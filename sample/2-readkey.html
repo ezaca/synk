@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Getting Started</title>
+    <style type="text/css">
+        html,body{
+            text-align: center;
+            font-family: sans-serif;
+            background: #17A08E;
+            color: #fff;
+        }
+        h1{
+            font-size: 2em;
+            font-variant: small-caps;
+            padding-top: 4rem;
+        }
+        p{
+            font-size: 1.1em;
+        }
+        div{
+            font-size: 2rem;
+            line-height: 4rem;
+            border-radius: 1rem;
+            background: white;
+            color: #17A08E;
+            display: inline-block;
+            width: 10rem;
+            height: 4rem;
+        }
+        pre{
+            display: inline-block;
+            text-align: left;
+            width: auto;
+            margin: 3rem;
+            padding: 3rem;
+            background: white;
+            color: black;
+            border-radius: 1rem;
+            letter-spacing: 1px;
+            line-height: 1.15rem;
+            position: relative;
+        }
+        pre::before{
+            content: 'Source Code';
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 0.7rem;
+            color: silver;
+        }
+    </style>
+</head>
+<body>
+
+<h1>ReadKey</h1>
+<p>Nostalgic of old Pascal?</p>
+<div id="display-count">press key</div><br>
+<p>Press ESC to stop</p>
+<pre><strong>while</strong>(<strong>true</strong>)
+{
+    <strong>yield new</strong> <span style="color:#17A08E;">Snippet.ReadKey</span>({<span style="color:#17A08E;">trapallkeys</span>:<strong>true</strong>});
+    display.innerText = KeyCodeNames[<strong>this.result</strong>] || <strong>this.result</strong>;
+
+    <strong>if</strong> (<strong>this.result</strong> === 27)
+        <strong>break</strong>;
+}</pre>
+
+<script type="text/javascript" src="../src/synk.js"></script>
+<script type="text/javascript" src="../src/synk-snippets.js"></script>
+<script type="text/javascript">
+    function* updateKeyPressed()
+    {
+        var display = document.getElementById('display-count');
+
+        while(true)
+        {
+            yield new Snippet.ReadKey({trapallkeys:true});
+            display.innerText = KeyCodeNames[this.result] || this.result;
+
+            if (this.result === 27)
+                break;
+        }
+        
+        display.innerHTML = 'escaped';
+    }
+
+    synk = new Synk(updateKeyPressed);
+
+
+
+    KeyCodeNames = {
+        8: 'BKSP',
+        9: 'TAB',
+        13: 'ENTER',
+        16: 'SHIFT',
+        17: 'CTRL',
+        18: 'ALT',
+        19: 'PAUSE',
+        32: 'SPACE',
+        37: 'LEFT',
+        38: 'UP',
+        39: 'RIGHT',
+        40: 'DOWN',
+        112: 'F1',
+        113: 'F2',
+        114: 'F3',
+        115: 'F4',
+    }
+    for(var i=65; i<65+26; i++)
+        KeyCodeNames[i] = 'Key '+String.fromCharCode(i);
+    for(var i=48; i<48+10; i++)
+        KeyCodeNames[i] = 'Alpha '+String.fromCharCode(i);
+    for(var i=96; i<96+10; i++)
+        KeyCodeNames[i] = 'Num '+(i-96);
+    for(var i=112; i<112+12; i++)
+        KeyCodeNames[i] = 'F'+(i-111);
+</script>
+</body>
+</html>

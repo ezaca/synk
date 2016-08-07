@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Getting Started</title>
+    <style type="text/css">
+        html,body{
+            text-align: center;
+            font-family: sans-serif;
+            background: #2F66B9;
+            color: #fff;
+        }
+        h1{
+            font-size: 2em;
+            font-variant: small-caps;
+            padding-top: 4rem;
+        }
+        p{
+            font-size: 1.1em;
+        }
+        div{
+            font-size: 2rem;
+            line-height: 4rem;
+            border-radius: 100%;
+            background: white;
+            color: #2F66B9;
+            display: inline-block;
+            width: 4rem;
+            height: 4rem;
+        }
+        pre{
+            display: inline-block;
+            text-align: left;
+            width: auto;
+            margin: 3rem;
+            padding: 3rem;
+            background: white;
+            color: black;
+            border-radius: 1rem;
+            letter-spacing: 1px;
+            line-height: 1.15rem;
+            position: relative;
+        }
+        pre::before{
+            content: 'Source Code';
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 0.7rem;
+            color: silver;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Counter (0-10)</h1>
+<p>Iteration number</p>
+<div id="display-count"></div><br>
+<pre><strong>for</strong> (i=0; i&lt;10; i++)
+{
+    display.innerText = i;
+    <strong>yield</strong> <span style="color:#2F66B9;">Snippet.Delay</span>(500);
+}</pre>
+
+<script type="text/javascript" src="../src/synk.js"></script>
+<script type="text/javascript" src="../src/synk-snippets.js"></script>
+<script type="text/javascript">
+    function* counterProgram()
+    {
+        var display = document.getElementById('display-count');
+
+        for (var i=0; i<10; i++)
+        {
+            display.innerText = i;
+            yield new Snippet.Delay(500);
+        }
+        
+        display.innerHTML = '<strong>10</strong>';
+    }
+
+    synk = new Synk(counterProgram);
+</script>
+</body>
+</html>

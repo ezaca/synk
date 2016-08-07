@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Event</title>
+    <style type="text/css">
+        html,body{
+            text-align: center;
+            font-family: sans-serif;
+            background: #73469D;
+        }
+        h1{
+            color: #fff;
+            font-size: 2em;
+            font-variant: small-caps;
+            padding-top: 4rem;
+        }
+        p{
+            color: #fff;
+            font-size: 1.1em;
+        }
+        button#open-modal{
+            color: #fff;
+            font-size: 1rem;
+            line-height: 4rem;
+            border-radius: 100%;
+            border: none;
+            background: white;
+            color: #73469D;
+            display: inline-block;
+            width: 8rem;
+            height: 8rem;
+            opacity: 0.8;
+            cursor: pointer;
+            margin-bottom: 4rem;
+        }
+        button#open-modal:hover,button#open-modal:focus{
+            opacity: 1;
+        }
+        pre{
+            display: inline-block;
+            text-align: left;
+            width: auto;
+            margin: 3rem;
+            padding: 3rem;
+            background: white;
+            color: black;
+            border-radius: 1rem;
+            letter-spacing: 1px;
+            line-height: 1.15rem;
+            position: relative;
+        }
+        pre::before{
+            content: 'Source Code';
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 0.7rem;
+            color: silver;
+        }
+    </style>
+</head>
+<body>
+
+<h1>DomEvent</h1>
+<p>Start the program and awaits a DOM event.</p>
+<button id="open-modal">Wait 2 sec...</button>
+
+<p>Open the source of this page to see the implementation.</p>
+<pre><span style="color:#73469D;"><strong>yield new</strong> Snippet.Delay</span>(2000);
+targetButton.innerHTML = 'Click me!';
+<span style="color:#73469D;"><strong>yield new</strong> Snippet.DomEvent</span>('click', targetButton);
+targetButton.innerHTML = 'Good job!';</pre>
+
+<script type="text/javascript" src="../src/synk.js"></script>
+<script type="text/javascript" src="../src/synk-snippets.js"></script>
+<script type="text/javascript">
+
+    function* EventProgram(targetButton){
+
+        yield new Snippet.Delay(2000);
+        targetButton.innerHTML = 'Click me!';
+        yield new Snippet.DomEvent('click', targetButton);
+        targetButton.innerHTML = 'Good job!';
+
+        var i;
+        for(i=1; i<=3; i++){
+            yield new Snippet.Delay(1500);
+            targetButton.innerHTML = 'Click again?';
+            yield new Snippet.DomEvent('click', targetButton);
+            targetButton.innerHTML = 'Good job x'+(i+1);
+        }
+        targetButton.innerHTML = 'OH! Stop that!';
+        yield new Snippet.DomEvent('click', targetButton);
+        targetButton.innerHTML = 'I told to stop!';
+        yield new Snippet.DomEvent('click', targetButton);
+        targetButton.innerHTML = 'You won\'t stop';
+        yield new Snippet.DomEvent('click', targetButton);
+        targetButton.innerHTML = 'will you?';
+        yield new Snippet.DomEvent('click', targetButton);
+        targetButton.innerHTML = 'I\'m done now!';
+        yield new Snippet.Delay(1500);
+        targetButton.innerHTML = 'Bye!';
+        yield new Snippet.Delay(1500);
+        targetButton.style.visibility = 'hidden';
+    }
+
+    var button = document.getElementById('open-modal');
+    synk = new Synk(EventProgram, [button]);
+
+</script>
+</body>
+</html>

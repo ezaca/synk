@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap Modal</title>
+    <link rel="stylesheet" href="__assets/bootstrap/css/bootstrap.min.css" crossorigin="anonymous">
+    <style type="text/css">
+        html,body{
+            text-align: center;
+            font-family: sans-serif;
+            background: #479152;
+        }
+        h1{
+            color: #fff;
+            font-size: 2em;
+            font-variant: small-caps;
+            padding-top: 4rem;
+        }
+        p{
+            color: #fff;
+            font-size: 1.1em;
+        }
+        button#open-modal{
+            color: #fff;
+            font-size: 2rem;
+            line-height: 4rem;
+            border-radius: 100%;
+            border: none;
+            background: white;
+            color: #479152;
+            display: inline-block;
+            width: 8rem;
+            height: 8rem;
+            opacity: 0.8;
+            cursor: pointer;
+            margin-bottom: 4rem;
+        }
+        button#open-modal:hover,button#open-modal:focus{
+            opacity: 1;
+        }
+        pre{
+            display: inline-block;
+            text-align: left;
+            width: auto;
+            margin: 3rem;
+            padding: 3rem;
+            background: white;
+            color: black;
+            border-radius: 1rem;
+            letter-spacing: 1px;
+            line-height: 1.15rem;
+            position: relative;
+        }
+        pre::before{
+            content: 'Source Code';
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 0.7rem;
+            color: silver;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bootstrap Modal</h1>
+<p>Open a modal and awaits.</p>
+<button id="open-modal">SHOW</button>
+
+<p>See the source of this page for a complete explanation of the code.</p>
+<pre>alert('...');
+
+<span style="color:#479152;">yield new Snippet.BsShowModal</span>('#login-modal');
+
+<strong>var</strong> user = $('#user-name').val();
+<strong>var</strong> pass = $('#user-password').val();
+<span style="color:#479152;">yield bsAlert</span>('...');
+<span style="color:#479152;">yield bsAlert</span>('...');
+</pre>
+
+    <!-- Begin Login Modal -->
+    <div id="login-modal" class="modal fade text-left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="user-name">User</label>
+                            <input class="form-control" type="text" id="user-name" placeholder="Your fake user" value="guest">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-password">Password</label>
+                            <input class="form-control" type="password" id="user-password" placeholder="Your fake password 123">
+                        </div>
+                    </form>
+                    <button type="button" class="btn btn-lg btn-primary" data-dismiss="modal">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login Modal -->
+
+    <!-- Begin Alert Modal -->
+    <div id="alert-modal" class="modal fade text-left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Information</h4>
+                </div>
+                <div class="modal-body" id="alert-modal-message">
+                    (This alert text will be replaced by bootstrapAlert function)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Alert Modal -->
+
+<script src="__assets/jquery.min.js"></script>
+<script src="__assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../src/synk.js"></script>
+<script type="text/javascript" src="../src/bootstrap-snippets.js"></script>
+<script type="text/javascript">
+
+// This function will set the text of an alert-like element and return a snippet
+// which emulates the Javascript native "alert".
+function bsAlert(htmlText)
+{
+    $('#alert-modal-message').html(htmlText);
+    return new Snippet.BsShowModal('#alert-modal');
+}
+
+// This generator function is our program. It will display a native alert,
+// a Bootstrap Login form and a Bootstrap alert-like modal.
+function* MyWonderfulProgram()
+{
+    // Blocking-alert the user which the modal will appear.
+    alert('Prepared to the amazingness?');
+
+    // Yield the ShowModal of Bootstrap modal.
+    yield new Snippet.BsShowModal('#login-modal', {backdrop:'static', /* Boostrap $.modal options. Not required */});
+    // This snippet will do a `$("#login-modal").modal(options);`, but this will
+    // be an asynchronous activity. The snippet will awaits until the modal
+    // closes and resume the function only after that.
+    // The following code will execute after the modal is closed.
+
+    // No need to call with "yield new Snippet.Call" a synchronous function.
+    // Use Snippet.Call only when the other function is a generator yielding
+    // other snippets.
+    var user = $('#user-name').val();
+    var pass = $('#user-password').val();
+
+    // Call our above function, which creates a Snippet to yield after set the
+    // message of our alert.
+    // And call it not once, but twice! =D
+    yield bsAlert('You closed the modal.<br>User: <code>'+user+'</code><br>Pass: <code>'+pass+'</code>');
+    yield bsAlert('That\'s all! Thank you for trying =)');
+    //
+    // !!! Caution !!!
+    // 
+    // Other sync Program or code may run asynchronously. So, it is important
+    // to notice that other fragments of code can call and close the dialog,
+    // messing with the behavior of this function. In our example, only this
+    // specific program works with the modals, so we are not worried. Other
+    // programs may share modals, it is a way to mess with all!
+    
+    // After all these comments and - eventually - some code, the program finishes.
+}
+
+var synk;
+
+$(function(){
+
+    $('button#open-modal').click(function(){
+        synk = new Synk(MyWonderfulProgram);
+    });
+
+});
+
+</script>
+</body>
+</html>

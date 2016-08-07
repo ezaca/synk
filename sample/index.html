@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Program Sampes</title>
+    <style type="text/css">
+        body,html{
+            padding: 0;
+            margin: 0;
+            font-family: Verdana, sans-serif;
+            width: 100vw;
+            height: 100vh;
+        }
+        body{
+            display: flex;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            align-items: stretch;
+            justify-content: stretch;
+            justify-items: stretch;
+            background: #111;
+        }
+        body > nav{
+            font-size: 0.9em;
+            padding: 1rem 2rem;
+            min-width: 8rem;
+            background: rgba(255,255,255,0.95);
+            color: white;
+            overflow-y: auto;
+            overflow-x: none;
+        }
+        body > nav > ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        body > nav > ul > li{padding:3px 0;}
+        body > nav > ul > li.header{
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #bbb;
+        }
+        body > nav > ul > li a{
+            color: #111;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.7s;
+        }
+        body > nav > ul > li a:hover,
+        body > nav > ul > li a:focus
+        {
+            text-shadow: 0px 0px 10px;
+        }
+        iframe{
+            width: 100%;
+            overflow: auto;
+            border: none;
+        }
+        body > aside.errors{
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+        body > aside.errors > div{
+            background: #F5C5C5;
+            border: #CD6363 solid 2px;
+            color: #CD6363;
+            border-radius: 10px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            font-family: monospace;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li class="header">Snippet</li>
+        <li><a href="1-delay.html">Delay</a></li>
+        <li><a href="2-readkey.html">ReadKey</a></li>
+        <li><a href="3-event.html">Event</a></li>
+        <li class="header">Bootstrap</li>
+        <li><a href="4-modals.html">Modals</a></li>
+    </ul>
+</nav>
+
+<iframe src=""></iframe>
+
+<aside class="errors"></aside>
+
+<script type="text/javascript">
+
+/**
+ * Navigation Handler
+ */
+
+var menu = document.querySelector('body > nav');
+var iframe = document.querySelector('body > iframe');
+menu.addEventListener('click', function(event){
+    event.preventDefault();
+    if (typeof event.target.href === 'string')
+    {
+        iframe.src = event.target.href;
+        iframe.focus();
+    }
+});
+
+iframe.addEventListener('load',function(event){
+    var iframeStyle = iframe.contentDocument.querySelector('style');
+    if (iframeStyle)
+        document.querySelector('style').sheet.cssRules[6].style.color = iframeStyle.sheet.cssRules[0].style.backgroundColor;
+    else
+        document.querySelector('style').sheet.cssRules[6].style.color = '#111';
+});
+
+/**
+ * Error Handler
+ */
+
+var errorsAside = document.querySelector('body > aside.errors');
+function errorTrack(event){
+    var message = '['+event.error.constructor.name+'] '+event.error.message;
+    var line = event.lineno;
+    var col = event.colno;
+    var filename = event.filename;
+    var p = filename.lastIndexOf('/');
+    filename = filename.substr(p);
+    var element = document.createElement('DIV');
+    element.innerHTML = message+'<br>&nbsp; &nbsp; at '+filename+':'+line+':'+col;
+    errorsAside.appendChild(element);
+
+    setInterval((function(element){
+        return function(){
+            element.remove();
+        }
+    })(element), 3000);
+}
+
+window.addEventListener('error', errorTrack);
+errorsAside.addEventListener('click', function(event){
+    if (event.target === this)
+        return true;
+
+    var target = event.target;
+    var limit = 10;
+    while ((--limit >= 0) && (target !== undefined) && (target.tagName !== 'DIV'))
+        target = target.parentElement;
+
+    if ((limit < 0) || (target === undefined))
+        return true;
+
+    target.remove();
+    return true;
+})
+
+</script>
+</body>
+</html>
