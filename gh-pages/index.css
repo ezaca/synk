@@ -47,6 +47,32 @@ header > .float-bottom{
     left: calc(50% - 25px);
 }
 
+header .float-left,
+header .float-right{
+    position: absolute;
+    width: 75px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 11px;
+    text-align: center;
+    bottom: 0;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+}
+header .float-left{
+    left: calc(50% - 75px - 25px);
+}
+header .float-right{
+    left: calc(50% + 25px);
+}
+header .float-left:hover,
+header .float-right:hover{
+    background: rgba(255,255,255,0.1);
+    text-decoration: none;
+}
+
 /**
  * Footer
  */
