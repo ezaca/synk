@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Performance</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        html,body{
+            margin: 0;
+            padding: 0;
+            background: #DD7676;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        body{
+            display: flex;
+            align-items: stretch;
+            align-content: stretch;
+            justify-items: stretch;
+            justify-content: flex-end;
+        }
+        h1{
+            margin: 0;
+            padding: 1rem 0;
+        }
+        main{
+            padding: 3rem;
+            background: #fff;
+            max-width: 900px;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <h1>Performance</h1>
+    <p>Generators are pretty new to browsers, and given the extra work to
+    maintain and resume a function, it will present some performance gaps.
+    All the work of Synk is to wake up and run a generator while the specified
+    asynchronous event completes.</p>
+    <p>For this reason, we <strong>do not</strong> recommend to use Synk in
+    applications where performance is essential, like games or web servers.</p>
+    <p>The performance problem occurs only in the Synk functions. The rest of the
+    code should behave normally. However, keep in mind that Javascript is
+    single-threaded. In other words, the delay when calling a generator can
+    delay other tasks in the same thread (other functions, intervals and
+    animation frames.</p>
+    <p>&nbsp;</p>
+    <p>&mdash; Updated in 2016.</p>
+</main>
+
+</body>
+</html>

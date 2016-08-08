@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Getting Started</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        html,body{
+            margin: 0;
+            padding: 0;
+            background: #2B5DCE;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        body{
+            display: flex;
+            align-items: stretch;
+            align-content: stretch;
+            justify-items: stretch;
+            justify-content: flex-end;
+        }
+        h1{
+            margin: 0;
+            padding: 1rem 0;
+        }
+        h2{
+            padding-top: 1em;
+        }
+        main{
+            padding: 3rem;
+            background: #fff;
+            width: 900px;
+        }
+        pre{
+            margin-bottom: 1em;
+        }
+        p.bg{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <h1>Getting Started</h1>
+    <p>This page is a quick guide to undersand and use Synk. Further information
+    is provided in next pages.</p>
+    <h2>Anatomy of a Synk Function</h2>
+    <p>A Synk function is a standard generator function. The only difference is
+    its content and the way you should call it.</p>
+    <p>To define a Synk function, just create a generator function:</p>
+    <pre>function* MySynkFunction (...args) {
+    ...
+}</pre>
+
+    <p>One of the abilities of a Synk function is to yield a Snippet.</p>
+    <p>A snippet is an object which can do some work and return the value
+    to our current Synk function. The function will stay suspended until the
+    snippet returns a value. A snippet can be synchronous or asynchronous,
+    depending on its implementation and work.</p>
+    <p>Any generator function will be suspended when an <code>yield</code>
+    statament is found. In our case, we can yield a new Snippet:</p>
+    <pre>function* MyDelayedSynk(){
+    yield new Snippet.Delay(1000);
+}</pre>
+
+    <p>The above code runs the function, awaits 1000 milliseconds and return.</p>
+    <p>A snippet can return some value by setting a property in the <code>this</code>
+    pseudo-object. Most of snippets will set the property <code>this.return</code>
+    to the expected value. It is the case of the snippet ReadKey.</p>
+    <pre>function* OldReadKey(){
+    yield new Snippet.ReadKey();
+    alert('You pressed: '+this.result);
+}</pre>
+    <p>A snippet can even receive a parameter when needed. The snippet of DomEvents,
+    for example, will expect you to tell what is the event to expect and what is
+    the element or selector to use:</p>
+    <pre>function* WaitClick(){
+    yield new Snippet.DomEvent('click', '#myButton1');
+    console.log('Event:',this.result);
+}</pre>
+
+    <p>Yielding a value other than a Snippet, will have no effect.</p>
+
+
+
+    <h2>Calling the function</h2>
+    <p>To call a Synk function, create a new Synk instance:</p>
+    <pre>new Synk(MySynkFunction);</pre>
+    <p>You can pass arguments to the function through an array in the second parameter:</p>
+    <pre>new Synk(MySynkFunction, [arg1, arg2, arg3]);</pre>
+    <p class="bg bg-info"><strong>Remember:</strong> the function will be a synchronous
+    call while it does synchronous call, and it will be asynchronous when yielding
+    an asynchronous call.</p>
+    <p>It is important to mention that calling a Synk function in a standard way
+    (<code>myFunction();</code>) without the Synk object will only create a
+    standard passive generator. Nothing will happen at all.</p>
+
+
+
+    <h2>A function inside a function</h2>
+    <p>When you are inside a Synk function, there are two types of call another
+    Synk function.</p>
+    <p>Creating a new Synk object and making a default call can be different than
+    expected, once the called function will not block the code if there is some
+    asynchronous content.</p>
+    <p>For that, we have a Snippet which allows to call another Synk function and
+    wait for it to return before continuing our code:</p>
+    <pre>function* myFunction1(n1, n2, n3){
+}
+
+function* myFunction2(){
+    yield new Snippet.Call(myFunction1, [1,2,3]);
+}</pre>
+
+    <p>In the example above, we are also passing three parameters. It is optional,
+    as Synk function does not need to exepect any parameter and a call does not need to
+    pass supply parameters (non supplied parameters will stay as <code>undefined</code>).</p>
+
+    <p>Whether waiting the function is not a behavior you want, you can just call it in the
+    standard way:</p>
+    <pre>function* myFunction2(){
+    new Synk(myFunction1, [1,2,3]);
+}</pre>
+
+    <p>Note that pure synchronous calls can be made as in any other code:</p>
+    <pre>function* myFunction(){
+    alert('Hello');
+    var x = Math.floor(5.3);
+}</pre>
+
+    <h2>Returning values from Synk functions</h2>
+    <p>This behavior is planned, but not implemented yet.</p>
+    <p>It should be done through a Promise-like way (but simpler). Once there is
+    some implementation, this text will be updated and a new page will be created
+    explaining how it will work.</p>
+
+    <h2>What is next?</h2>
+    <p>Here you should have learn that:</p>
+    <ul>
+        <li>a synk function is just a standard generator of ECMA 6;</li>
+        <li>our secret is only the <code>yield</code> and the snippets;</li>
+        <li>there is a specific way to call the synk function.</li>
+    </ul>
+
+    <p>The next sections will explain about synchrony and asynchrony. This will be
+    important to understand the behavior of Synk. Also, there is some performance
+    gaps out of our control.</p>
+    <p>In the right panel you can find information about what Snippets are available
+    and their behaviors.</p>
+
+    <p>&nbsp;</p>
+    <strong>Enjoy the library!</strong>
+</main>
+
+<script type="text/javascript"></script>
+</body>
+</html>
