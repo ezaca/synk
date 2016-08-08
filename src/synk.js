@@ -109,9 +109,4 @@ class SynkContext
         this.synk.return(value);
         this.synk.continue();
     }
-
-    call(func, args)
-    {
-        return new Snippet.Call(func, args);
-    }
 }

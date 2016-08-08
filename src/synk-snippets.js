@@ -82,7 +82,7 @@ Snippet.register('DomEvent', (function(){
         main(eventName, element, options){
             var self = this;
             options = options || {};
-            if ((! element instanceof HTMLElement))
+            if (! (element instanceof HTMLElement))
                 element = document.querySelector(element);
 
             this.snippet.listener = function(event){
@@ -96,7 +96,14 @@ Snippet.register('DomEvent', (function(){
                 self.snippet.callback.apply(self, [event]);
             }
 
-            element.addEventListener(eventName, this.snippet.listener);
+            try
+            {
+                element.addEventListener(eventName, this.snippet.listener);
+            } catch(e)
+            {
+                console.error('Expected HTMLElement ',element,'given');
+                throw e;
+            }
         }
 
         callback(keyCode){
