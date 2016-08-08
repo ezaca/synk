@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="utf-8">
-    <title>Program Sampes</title>
+    <title>Synk</title>
     <style type="text/css">
         body,html{
             padding: 0;
@@ -18,16 +18,18 @@
             align-items: stretch;
             justify-content: stretch;
             justify-items: stretch;
-            background: #111;
+            background: #fff;
         }
         body > nav{
             font-size: 0.9em;
             padding: 1rem 2rem;
             min-width: 8rem;
-            background: rgba(255,255,255,0.95);
+            background: #fff;
+            border-left: #eee solid 1px;
             color: white;
             overflow-y: auto;
             overflow-x: none;
+            padding-right: 6rem;
         }
         body > nav > ul{
             padding: 0;
@@ -35,10 +37,19 @@
             list-style: none;
         }
         body > nav > ul > li{padding:3px 0;}
-        body > nav > ul > li.header{
+        body > nav > ul > li.h2{
             font-size: 0.9em;
             font-weight: bold;
             color: #bbb;
+            margin-top: 0.5rem;
+        }
+        body > nav > ul > li.h1{
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #999;
+        }
+        body > nav > ul > li.h1:not(:first-of-type){
+            margin-top: 2rem;
         }
         body > nav > ul > li a{
             color: #111;
@@ -50,6 +61,11 @@
         body > nav > ul > li a:focus
         {
             text-shadow: 0px 0px 10px;
+        }
+        body > nav > h1{
+            font-size: 0.8rem;
+            color: #000;
+            text-transform: uppercase;
         }
         iframe{
             width: 100%;
@@ -77,18 +93,23 @@
 </head>
 <body>
 
+<iframe src=""></iframe>
+
 <nav>
+    <h1>Synk Docs</h1>
     <ul>
-        <li class="header">Snippet</li>
+        <li class="h1">Topics</li>
+        <li><a href="getting-started.html">Getting Started</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li class="h1">Snippet Gallery</li>
+        <li class="h2">Synk</li>
         <li><a href="1-delay.html">Delay</a></li>
         <li><a href="2-readkey.html">ReadKey</a></li>
         <li><a href="3-event.html">Event</a></li>
-        <li class="header">Bootstrap</li>
+        <li class="h2">Bootstrap</li>
         <li><a href="4-modals.html">Modals</a></li>
     </ul>
 </nav>
-
-<iframe src=""></iframe>
 
 <aside class="errors"></aside>
 
@@ -100,21 +121,38 @@
 
 var menu = document.querySelector('body > nav');
 var iframe = document.querySelector('body > iframe');
+
+var rex = /(?:\?|\&)(?:p\=)([\w\-]+)/i;
+var r = rex.exec(window.location.search);
+if (r)
+{
+    var fn = r[1];
+    iframe.src = fn+'.html';
+    document.title = fn.substr(0,1).toUpperCase()+fn.substr(1) + ' - Snyk';
+    window.history.pushState(null, fn.substr(0,1).toUpperCase()+fn.substr(1), '?p='+fn);
+}
+
 menu.addEventListener('click', function(event){
     event.preventDefault();
     if (typeof event.target.href === 'string')
     {
         iframe.src = event.target.href;
         iframe.focus();
+        document.title = event.target.innerText + ' - Snyk';
+        window.history.pushState(null, event.target.innerText, '?p='+event.target.href.match(/(?:\/)([\w\-]+)(?:\.html)/)[1]);
     }
 });
 
 iframe.addEventListener('load',function(event){
-    var iframeStyle = iframe.contentDocument.querySelector('style');
-    if (iframeStyle)
-        document.querySelector('style').sheet.cssRules[6].style.color = iframeStyle.sheet.cssRules[0].style.backgroundColor;
-    else
-        document.querySelector('style').sheet.cssRules[6].style.color = '#111';
+    try{
+        var iframeStyle = iframe.contentDocument.querySelector('style');
+        if (iframeStyle)
+            document.querySelector('style').sheet.cssRules[8].style.color = iframeStyle.sheet.cssRules[0].style.backgroundColor;
+        else
+            document.querySelector('style').sheet.cssRules[8].style.color = '#111';
+    }catch(e){
+            document.querySelector('style').sheet.cssRules[8].style.color = '#111';
+    }
 });
 
 /**

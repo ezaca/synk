@@ -1,0 +1,137 @@
+/**
+ * Default settings
+ */
+
+html,body{
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, sans-serif;
+    font-size: 1rem;
+}
+
+a:hover{
+    color: #F50057;
+}
+
+/**
+ * Header
+ */
+
+header{
+    position: relative;
+    background: #2980b9;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    margin-bottom: 25px;
+}
+header > h1{
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    padding: 0.2rem 0;
+}
+header > h2{
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+header > .float-bottom{
+    position: absolute;
+    bottom: -20px;
+    left: calc(50% - 25px);
+}
+
+/**
+ * Footer
+ */
+
+footer{
+    border: none;
+    border-top: #BCC4C8 solid 1px;
+    color: #BCC4C8;
+    text-align: center;
+    font-size: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 1rem;
+}
+footer a{
+    color: #6B94A9;
+    transition: color .5s;
+}
+
+/**
+ * Content
+ */
+
+main{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 0 4rem;
+}
+main article{
+    margin: 1rem 2rem;
+    padding: 1rem;
+    max-width: 700px;
+}
+
+main article h1{
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+    color: #2980b9;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+main article h1:not(:first-of-type){
+    padding-top: 4rem;
+}
+main article p{
+    font-size: 1.05rem;
+}
+main article blockquote{
+    border: none;
+    font-family: Georgia, serif;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.3rem;
+    margin: 1rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+main article blockquote > span{
+    display: inline-block;
+    padding: 0 30px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABGElEQVQ4T+1Uy4kCQRB95YAgIzgZ7JqBGagR6GV1j2awuxloBhqBevNz0Qg0g9UMDEFhVPAw7evB79gtCCNebOhL1etX71UVLYj5SMx8eC6hQtnbINlWEM+BNFLoTU0O1qiOFJABgm4aw84l5kqhj8pUIHlAdV0MaiYyH9UmH/0wN3fRz0UxJ0IfXzVBgurUysXuUzBaRsFbfBcCqImOJyBZOlhYCWlDJz9opZVG/9dmlfES75jqyiZMqJDqclT3f6hcvNM71tNHNdiSupXw0grBMw4lYjf4c+B4R7s2DAc0CxVeE97WZb+KOnomNGO0szehaW7hzr24h3oPAWma9YV7d1j0+5jT2tiJHs889/t6XM/ti9gV7gFnF4UVGoyTYgAAAABJRU5ErkJggg=="),
+                      url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABCElEQVQ4T+2UTw7BQBTGv+lCgi4cwQ1wA06gG2qHE6gTcAN1A0t/NpwAN3ADcQMLjVjo+EZDhBlNRCJNTNJF5/3yvfe+91qBLx/xZT0kRPCAWhGwBub2w24Ue8/YmG2uLR/RKIeQS5OgBVFRsTgmjfHqL6h38fceRmsj/Mf6BESO74XrsnDKZ5z3ccx9yrpGA9T7FOipWBYT7Rf1uG4SYem+h3pBd877Kp8FBR0dc4DrM1OHsR2ZvGJMmfNc4q0CbpmfBSWcXIDUVllDps3qRkbBAO5G+SeBoY2JZ7CEAqIpIdc2puUb81IhB9Qi2GLmvalV+uswmaeYDE5k5xxYdBLy+9J59OndBZ2+fRUQPTLrAAAAAElFTkSuQmCC");
+    background-repeat: no-repeat, no-repeat;
+    background-position: left bottom, right top;
+}
+
+main article blockquote em{
+    border-bottom: #BCC4C8 solid 2px;
+}
+
+main article pre:before{
+    content: attr(title);
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: bold;
+    opacity: .2;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+main article pre .pre-comment{color: #F50057;}
+
+main article small{
+    font-size: 0.75em;
+}

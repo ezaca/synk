@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Synk</title>
+    <link rel="stylesheet" type="text/css" href="sample/__assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="sample/__assets/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="gh-pages/index.css">
+</head>
+<body>
+
+<header>
+    <!-- Enter Key icon by Icons8 -->
+    <img class="icon icons8-Enter-Key" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACKUlEQVRoQ+2ZvU4CQRDHZ70osRESG4waMfiBNobW2PkCKJYIj6CUxEIojCU8gCYkUAo8gZ2ViaEy4EcCFAoaowYLxKjr3gWMxju5vds9OL2rZ2f/v/nP3k7uEJj8QSbXDxZAtx20HPhzDuRLJQc0X7cBkI/AuXQClgGhpHfWHVPKw7yF8sXLBNlsQ6fw78sxjnnnpqNyOXkAPJCNHEwBAMpez9SkUQCYsXgpHQGQLTYPBywAOQctB9T2NXkLWS1kihaa8WxJOs+LO6rMNeQM5AslF6C3khpFPQpwESVXPxkjOj89BSBVvu89BBjLXvdyONwBGA9lPxj4A/AYyr5gGAHAYyj7RDACgMuF1CYwDYAzcgC13bWunAFdDgj1BoyF9sFWqMpeVj3tgK1wLYkX6s+Kt23PAgzlTsAZyXa+yVoR3EYJrVOl6QHEwkotFNwD4alJNbD9Zhv1MKfVgbYI6RAHySEuyh9i1T3WCjQcoC1Q6TVqGgBaoUrxXXPAAtB6Bo5Pz3C/ILAqoK48jeYLLC7M033Yyh0eYdeoU9fGrBaXr2qwsrxEB5BIZ7F7fASGHXYYtA2w0kKVR6z8zd09VKq3sBlYpQeg2o1z8P8DiKczjwiQnXNhVaXHgCvhgN8lF6z4dTqeykSRyk8kqlToCMLkB0d43R+lAhCD46lsAhD2EScmdOyvealYecCQVBIvJmb+f0CzWo0LLQCNhWO2zHKAWSk1JjK9Ax/BuAdAz7QXuwAAAABJRU5ErkJggg==" width="48" height="48">
+    
+    <h1>SYNK</h1>
+    <h2>An ECMA6 synchronous call/suspendable function.</h2>
+    
+    <!-- Circled Down icon by Icons8 -->
+    <img class="float-bottom icon icons8-Circled-Down" src="data:image/png;base64,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" width="52" height="52">
+</header>
+
+<main>
+    <article>
+        <h1>Requirements</h1>
+        <p>This document requires you to:</p>
+        <ul>
+            <li>know Javascript language and be able to read and understand simple algorithms;</li>
+            <li>understand the basic about asynchronous nature of Javascript;</li>
+            <li>be able to read English with bad grammar.</li>
+        </ul>
+
+        <p>&nbsp;</p>
+        <p>When developing with Synk, the target browser must support:</p>
+        <ul>
+            <li><code>document.querySelector</code> function;</li>
+            <li>generator functions of the ECMA6 specification;</li>
+            <li>classes of the ECMA6 specification.</li>
+        </ul>
+
+        <h1>Golden times</h1>
+        <blockquote><span>Remember the golden times...</span></blockquote>
+        <p>You are a bit nostalgic with those black screens with one command at time, heh?</p>
+        <p>Javascript is too asynchronous and does not fit on your good manners?</p>
+        <p>Welcome to your dreams!</p>
+        <p>&nbsp;</p>
+        <p>Remember old Pascal?</p>
+        <pre title="Pascal Source"><strong>program</strong> SchoolGrades;<br><br><strong>var</strong> n1,n2,n3,total: Integer;<br><br><strong>begin</strong><br>    WriteLn('Write the 1st school grade:');<br>    ReadLn(n1);<br>    WriteLn('Write the 2nd school grade:');<br>    ReadLn(n2);<br>    WriteLn('Write the 3rd school grade:');<br>    ReadLn(n3);<br>    total = (n1 + n2 + n3) div total;<br>    WriteLn('The total is ', total);<br>    <strong>if</strong> (total >= 7)<br>        WriteLn('Student passed!');<br>    <strong>else</strong><br>        WriteLn('Student failed!');<br><strong>end</strong>.</pre>
+
+        <p>&nbsp;</p>
+        <p>Very good! But how would you do it in Javascript getting the values in only one input?</p>
+        <p>Spliting the text with comma? A maze of callbacks?</p>
+        <p>Or maybe the 6th version of <abbr title="The standard language ECMAScript, here you can read as Javascript">ECMA</abbr> is more retro-compatible than expected?</p>
+
+        <blockquote><span>&ldquo;I <em>can</em> not&rdquo; or &ldquo;I <em>should</em> not&rdquo;? Nevermind, it's done!</span></blockquote>
+
+        <p>In my mother language, we call it <a href="https://pt.wikipedia.org/wiki/Gambiarra">gambiarra</a> &mdash; a bunch of quick fixes.</p>
+        <p>Let's see the philosophy: Javascript do asynchronous calls for many processes and the answer come with that maze of callbacks. It is so with DOM events, Ajax and others...</p>
+        <p><code>GeneratorFunction</code>s, in other hand, will stop the execution when a value is <em>yielded</em>, and resume when called again.</p>
+
+        <hr>
+        <h1>Blocking the Function</h1>
+
+        <blockquote><span>MacGyver still live in our hearts...</span></blockquote>
+
+        <p>In theory a <code>GeneratorFunction</code> can wait until a value is given and wake up when called by an external observer.</p>
+        <p>Is it valid in real world?</p>
+        <p>First we include our wonderful and amazing and... *sigh* First we include our tiny library Synk and its Snippets (we'll see later).</p>
+        <p>Now we create the generator function yielding asynchronous tasks:</p>
+        <pre title="Javascript Source"><strong>function*</strong> SchoolGrades(){<br>    <span class="pre-comment">// Declare the variables</span><br>    <strong>var</strong> n1, n2, n3, t;<br><br>    <span class="pre-comment">// WriteLn (set the text)</span><br>    sample1_nth.innerText = 'first';<br><br>    <span class="pre-comment">// ReadLn (wait for input)</span><br>    <strong>yield new</strong> Snippet.DomEvent('submit', '#sample1_form');<br>    n1 = Number(sample1_n.value);<br>    sample1_n.value = '';<br>    sample1_vn1.innerText = n1;<br><br>    sample1_nth.innerText = 'second';<br>    <strong>yield new</strong> Snippet.DomEvent('submit', '#sample1_form');<br>    n2 = Number(sample1_n.value);<br>    sample1_n.value = '';<br>    sample1_vn2.innerText = n2;<br><br>    sample1_nth.innerText = 'third';<br>    <strong>yield new</strong> Snippet.DomEvent('submit', '#sample1_form');<br>    n3 = Number(sample1_n.value);<br>    sample1_n.value = '';<br>    sample1_vn3.innerText = n3;<br><br>    <span class="pre-comment">// Calc the average grade</span><br>    t = Math.round(((n1+n2+n3) / 3)*10)/10;<br>    sample1_vt.innerText = t;<br><br>    <span class="pre-comment">// Dramatic delay</span><br>    <strong>yield new</strong> Snippet.Delay(2000);<br><br>    <span class="pre-comment">// Show status</span><br>    <strong>if</strong> (t >= 7)<br>        sample1_vstatus.innerText = 'student passed';<br>    <strong>else</strong><br>        sample1_vstatus.innerText = 'student failed';<br>}</pre>
+
+        <p>Now we should call our function and handle those "yields" statements.</p>
+        <p>We can do it creating a Synk instance and giving our function to it:</p>
+        <pre><strong>var</strong> synk = <strong>new</strong> Synk(SchoolGrades);</pre>
+        <p>Below we have this code working!</p>
+
+        <hr>
+        <h1>Live example</h1>
+        <form id="sample1_form" class="well" onsubmit="javascript:return false;">
+            <div class="form-group">
+                <label>Enter the <span id="sample1_nth">first</span> school grade:</label>
+                <div class="input-group">
+                    <input class="form-control" type="number" min="0" max="10" id="sample1_n">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default">Enter</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>Grade 1: <code id="sample1_vn1">(Enter a value)</code></div>
+                <div>Grade 2: <code id="sample1_vn2">(Enter a value)</code></div>
+                <div>Grade 3: <code id="sample1_vn3">(Enter a value)</code></div>
+                <div>Final grade: <code id="sample1_vt">(Not calculated)</code></div>
+                <div>Status: <code id="sample1_vstatus">(Not calculated)</code></div>
+            </div>
+            <small>* If you are reading the page source, the Javascript is in the final.</small>
+        </form>
+
+        <hr>
+        <h1>What is next?</h1>
+        <p>Now that you trust us, you can see the <a href="sample/index.html">documentation</a>.</p>
+
+    </article>
+</main>
+
+<footer>
+<div>2016 &copy; Eliakim Zacarias</div>
+<div>
+    <a href="sample/index.html">Docs</a>
+    &bull;
+    <a href="https://github.com/EZaca/synk">GitHub</a>
+    &bull;
+    <a href="https://github.com/EZaca/synk/blob/master/LICENSE">License (MIT)</a>
+</div>
+<div>
+    <a href="https://icons8.com">Icon pack by Icons8</a>
+    &bull;
+    <a href="https://jquery.com/">Using jQuery</a>
+    &bull;
+    <a href="https://getbootstrap.com">Using Bootstrap</a>
+</div>
+<div>The icon of the &quot;Enter Key&quot; is not the offical icon of the library.</div>
+<div>The library currently has no icon and its name "Synk" should be used instead.</div>
+</footer>
+
+<script type="text/javascript" src="sample/__assets/jquery.min.js"></script>
+<script type="text/javascript" src="sample/__assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="src/synk.js"></script>
+<script type="text/javascript" src="src/synk-snippets.js"></script>
+<script type="text/javascript">
+    /**
+     * There are you! Curious!
+     * Let's what we have here!
+     *
+     * Take a look right above.
+     * The files "synk.js" and "synk-snippets.js" must be included in this order
+     * because the snippets depends of Synk.
+     */
+    
+    /**
+     * Sample 1
+     */
+    
+    function* SchoolGrades()
+    {
+        // Declare the variables
+        var n1, n2, n3, t;
+
+        // OK! I lied! Here we will use a "while" and reset the values for
+        // each loop. This will grant an infinite sample.
+        
+        while(true)
+        {
+            // Reset the elements.
+            sample1_n.value = '';
+            sample1_vn1.innerText = '(Enter a value)';
+            sample1_vn2.innerText = '(Enter a value)';
+            sample1_vn3.innerText = '(Enter a value)';
+            sample1_vt.innerText = '(Not calculated)';
+            sample1_vstatus.innerText = '(Not calculated)';
+
+            // WriteLn (set the text)
+            sample1_nth.innerText = 'first';
+
+            // ReadLn (wait for input)
+            yield new Snippet.DomEvent('submit', '#sample1_form');
+            n1 = Number(sample1_n.value);
+            sample1_n.value = '';
+            sample1_vn1.innerText = n1;
+
+            sample1_nth.innerText = 'second';
+            yield new Snippet.DomEvent('submit', '#sample1_form');
+            n2 = Number(sample1_n.value);
+            sample1_n.value = '';
+            sample1_vn2.innerText = n2;
+
+            sample1_nth.innerText = 'third';
+            yield new Snippet.DomEvent('submit', '#sample1_form');
+            n3 = Number(sample1_n.value);
+            sample1_n.value = '';
+            sample1_vn3.innerText = n3;
+
+            // Calc the average grade
+            t = Math.round(((n1+n2+n3) / 3)*10)/10;
+            sample1_vt.innerText = t;
+
+            // Dramatic delay
+            yield new Snippet.Delay(2000);
+
+            // Show status
+            if (t >= 7)
+                sample1_vstatus.innerText = 'student passed';
+            else
+                sample1_vstatus.innerText = 'student failed';
+
+            yield new Snippet.DomEvent('submit', '#sample1_form');
+        }
+    }
+
+    // Thought I was kidding?
+    var synk = new Synk(SchoolGrades);
+</script>
+</body>
+</html>
