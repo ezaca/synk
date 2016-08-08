@@ -99,6 +99,7 @@
     <h1>Synk Docs</h1>
     <ul>
         <li class="h1">Topics</li>
+        <li><a href=".." class="direct">Overview</a></li>
         <li><a href="getting-started.html">Getting Started</a></li>
         <li><a href="performance.html">Performance</a></li>
         <li class="h1">Snippet Gallery</li>
@@ -133,9 +134,9 @@ if (r)
 }
 
 menu.addEventListener('click', function(event){
-    event.preventDefault();
-    if (typeof event.target.href === 'string')
+    if ((typeof event.target.href === 'string') && (! event.target.classList.contains('direct')))
     {
+        event.preventDefault();
         iframe.src = event.target.href;
         iframe.focus();
         document.title = event.target.innerText + ' - Snyk';
