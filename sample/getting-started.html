@@ -8,7 +8,7 @@
         html,body{
             margin: 0;
             padding: 0;
-            background: #DD7676;
+            background: #2B5DCE;
             width: 100%;
             box-sizing: border-box;
             font-size: 1rem;
@@ -122,6 +122,12 @@ function* myFunction2(){
     standard way:</p>
     <pre>function* myFunction2(){
     new Synk(myFunction1, [1,2,3]);
+}</pre>
+
+    <p>Note that pure synchronous calls can be made as in any other code:</p>
+    <pre>function* myFunction(){
+    alert('Hello');
+    var x = Math.floor(5.3);
 }</pre>
 
     <h2>Returning values from Synk functions</h2>
